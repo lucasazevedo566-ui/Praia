@@ -16,12 +16,11 @@ def load_and_clean_data():
     # Caminho do arquivo real
     file_path = "Digital_Moda_Praia_50026.csv"
     
-    # Tenta ler como CSV delimitado por ponto e vírgula 
-    try:
-        df = pd.read_csv(file_path, sep=';', encoding='latin1')
-    except Exception:
-        # Fallback caso seja um Excel nativo
-        df = pd.read_excel(file_path)
+    # Lendo como CSV (utf-8-sig ignora caracteres invisíveis que o Excel embute no arquivo)
+    df = pd.read_csv(file_path, sep=';', encoding='utf-8-sig')
+
+    # Remove qualquer espaço em branco "invisível" no começo ou fim dos nomes das colunas
+    df.columns = df.columns.str.strip()
 
     # Padronizando o nome das colunas
     df = df.rename(columns={
@@ -258,3 +257,4 @@ with tab_comparador:
     else:
 
         st.warning("Nenhuma marca encontrada na base de dados conectada.")
+
