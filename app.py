@@ -14,7 +14,7 @@ st.set_page_config(page_title="Intelligence Board", layout="wide", initial_sideb
 @st.cache_data
 def load_and_clean_data():
     # Caminho do arquivo real
-    file_path = r"C:\Users\Administrador\OneDrive\Documentos\Digital_Moda_Praia_50026.xlsx"
+    file_path = "Digital_Moda_Praia_50026.csv"
     
     # Tenta ler como CSV delimitado por ponto e vírgula 
     try:
@@ -256,4 +256,5 @@ with tab_comparador:
             plot_comparative_bar('property', 'Top Properties (Plataformas)')
             plot_comparative_bar('adType', 'Formatos')
     else:
+
         st.warning("Nenhuma marca encontrada na base de dados conectada.")
